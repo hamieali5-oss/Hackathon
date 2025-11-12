@@ -1,0 +1,75 @@
+{
+  "metadata": {
+    "pdf_file": "trial.pdf",
+    "analysis_date": "2025-11-12T00:44:41.341156",
+    "word_limit": 200,
+    "actual_words": 58
+  },
+  "extracted_parameters": {
+    "well_name": "NLW-GT-02-S1",
+    "operation": "Install GRE string",
+    "start_date": "10th April 2019",
+    "duration": "25 days",
+    "total_depth": "2680.00 m MD, 2525.60 m TVD",
+    "packer_depth_m": "2420 m AHGL",
+    "pbr_depth_m": "2420 m AHGL",
+    "pump_intake_depth_m": "",
+    "tubing_size": "6",
+    "esp_installed": true,
+    "reservoir_temp_c": "90",
+    "fluid_type": "Level",
+    "wellhead_pressure_bar": "",
+    "flow_rate_m3h": "",
+    "fluid_density_kg_m3": "",
+    "fluid_viscosity_cp": "",
+    "hse_incidents": "None"
+  },
+  "nodal_analysis_inputs": {
+    "wellhead_pressure_bar": 10.0,
+    "flow_rate_m3_h": 50.0,
+    "tubing_inner_diameter_in": 6.0,
+    "fluid_density_kg_m3": 1050.0,
+    "fluid_viscosity_cP": 1.0,
+    "reservoir_temperature_c": 90.0,
+    "depth_m": 2000.0
+  },
+  "nodal_analysis_results": {
+    "status": "success",
+    "missing_parameters": [],
+    "message": "Nodal analysis completed successfully",
+    "results": {
+      "operating_point": {
+        "flow_rate_m3_h": 50.0,
+        "wellhead_pressure_bar": 10.0,
+        "bottomhole_pressure_bar": 216.69,
+        "reservoir_pressure_bar": 260.02
+      },
+      "pressure_analysis": {
+        "hydrostatic_pressure_drop_bar": 206.01,
+        "friction_pressure_drop_bar": 0.68,
+        "total_pressure_drop_bar": 206.69
+      },
+      "flow_characteristics": {
+        "reynolds_number": 121838.0,
+        "flow_regime": "Turbulent",
+        "friction_factor": 0.0169,
+        "velocity_m_s": 0.76
+      },
+      "productivity": {
+        "productivity_index_m3h_bar": 1.15,
+        "max_flow_rate_m3_h": 300.0,
+        "current_utilization_pct": 16.7
+      },
+      "input_parameters_used": {
+        "wellhead_pressure_bar": 10.0,
+        "flow_rate_m3_h": 50.0,
+        "tubing_inner_diameter_in": 6.0,
+        "fluid_density_kg_m3": 1050.0,
+        "fluid_viscosity_cP": 1.0,
+        "reservoir_temperature_c": 90.0,
+        "depth_m": 2000.0
+      }
+    }
+  },
+  "summary": "Well: NLW-GT-02-S1. Operation: Install GRE string. Started: 10th April 2019. Duration: 25 days. Packer set at 2420 m AHGL. ESP system installed. Reservoir temperature: 90°C. No HSE incidents reported. Nodal analysis: Operating at 50.0 m³/h with wellhead pressure 10.0 bar and bottomhole pressure 216.69 bar. Productivity index: 1.15 m³/h/bar. Maximum potential flow: 300.0 m³/h (16.7% utilization). ................................................................................ erties.........................................................................................................................................."
+}

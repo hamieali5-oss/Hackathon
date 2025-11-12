@@ -1,0 +1,46 @@
+{
+  "_comment": "Example nodal analysis input parameters",
+  "_description": "Use this template to provide custom parameters for nodal analysis calculations",
+  
+  "wellhead_pressure_bar": 18.5,
+  "_wellhead_pressure_bar_description": "Wellhead pressure in bar (typical range: 10-50 bar)",
+  
+  "flow_rate_m3_h": 135.0,
+  "_flow_rate_m3_h_description": "Production flow rate in cubic meters per hour",
+  
+  "tubing_inner_diameter_in": 7.0,
+  "_tubing_inner_diameter_in_description": "Tubing inner diameter in inches (common: 2-7/8, 3-1/2, 5-1/2, 7)",
+  
+  "fluid_density_kg_m3": 1050.0,
+  "_fluid_density_kg_m3_description": "Fluid density in kg/m³ (water≈1000, brine≈1050-1200, oil≈800-900)",
+  
+  "fluid_viscosity_cP": 1.2,
+  "_fluid_viscosity_cP_description": "Fluid viscosity in centiPoise (water≈1.0, light oil≈5-10, heavy oil≈100+)",
+  
+  "reservoir_temperature_c": 90.0,
+  "_reservoir_temperature_c_description": "Bottomhole/reservoir temperature in degrees Celsius",
+  
+  "depth_m": 2420.0,
+  "_depth_m_description": "True vertical depth or measured depth in meters (typically pump intake or mid-perforation depth)",
+  
+  "_usage_instructions": [
+    "To use this file, save it and run:",
+    "python well_rag_pipeline.py --pdf your_report.pdf --nodal-json nodal_inputs_example.json --output ./results",
+    "",
+    "The system will:",
+    "1. Extract all available parameters from the PDF",
+    "2. Override with values from this JSON file",
+    "3. Perform nodal analysis calculations",
+    "4. Include results in the summary and report"
+  ],
+  
+  "_parameter_guidelines": {
+    "wellhead_pressure_bar": "Measure at wellhead or from separator. Account for seasonal variations.",
+    "flow_rate_m3_h": "Use stabilized rate, not initial transient. Convert from bbl/d if needed (1 m³/h ≈ 6.29 bbl/d).",
+    "tubing_inner_diameter_in": "Use actual ID, not nominal. Check wear/corrosion for old wells.",
+    "fluid_density_kg_m3": "Consider temperature effects. Use PVT lab data if available.",
+    "fluid_viscosity_cP": "Temperature-dependent. Use downhole conditions, not surface.",
+    "reservoir_temperature_c": "Get from logging data or thermal models. Increases with depth (~3°C/100m).",
+    "depth_m": "Use pump setting depth or mid-perforation for most accurate results."
+  }
+}

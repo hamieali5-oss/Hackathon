@@ -1,0 +1,35 @@
+# Core Dependencies for Well RAG Pipeline
+# Install with: pip install -r requirements.txt
+
+# PDF Processing
+PyMuPDF==1.23.8
+pdf2image==1.16.3
+pypdf==3.17.4
+
+# OCR (for scanned PDFs and image extraction)
+pytesseract==0.3.10
+Pillow==10.1.0
+
+# Machine Learning & NLP
+scikit-learn==1.3.2
+numpy==1.26.2
+scipy==1.11.4
+
+# Text Processing
+nltk==3.8.1
+
+# PDF Generation
+reportlab==4.0.7
+markdown==3.5.1
+beautifulsoup4==4.12.2
+
+# System Requirements:
+# - Tesseract OCR binary must be installed separately:
+#   Windows: Download from https://github.com/UB-Mannheim/tesseract/wiki
+#   Linux: sudo apt-get install tesseract-ocr
+#   macOS: brew install tesseract
+#
+# - Poppler (for pdf2image):
+#   Windows: Download from http://blog.alivate.com.au/poppler-windows/
+#   Linux: sudo apt-get install poppler-utils
+#   macOS: brew install poppler
