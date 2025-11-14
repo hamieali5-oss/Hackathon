@@ -1,0 +1,41 @@
+from pathlib import Path
+import json
+
+def build_context(chunks):
+    parts = []
+    for i, d in enumerate(chunks, 1):
+        src = Path(d.metadata["source"]).name
+        page = d.metadata["page"]
+        parts.append(f"[{i}] Source: {src} (page {page})\n{d.page_content}")
+    return "\n\n---\n\n".join(parts)
+
+
+def generate_summary(pdf_path, docs, db, rag_chain, word_limit=200, k_retrieve=20, global_query=None):
+    if not global_query:
+        global_query = (
+            "well completion, operational summary, well test, equipment data, "
+            "production rates, reservoir details, fluids, pressures"
+        )
+
+    hits = db.similarity_search(global_query, k=k_retrieve * 3)
+    target_hits = [h for h in hits if Path(h.metadata["source"]) == Path(pdf_path)]
+
+    if not target_hits:
+        target_hits = hits[:k_retrieve]
+    else:
+        target_hits = target_hits[:k_retrieve]
+
+    context = build_context(target_hits)
+    summary_text = rag_chain.invoke({"word_limit": word_limit, "context": context}).strip()
+
+    citations = [{"file": Path(h.metadata["source"]).name, "page": h.metadata["page"]} for h in target_hits]
+
+    full_json = json.dumps({
+        "pdf": str(pdf_path),
+        "summary": summary_text,
+        "citations": citations,
+        "chunks_used": len(target_hits),
+        "model": "flan-t5-base"
+    }, indent=2, ensure_ascii=False)
+
+    return {"summary": summary_text, "citations": citations, "full_json": full_json}
