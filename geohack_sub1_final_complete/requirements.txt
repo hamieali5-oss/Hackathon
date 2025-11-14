@@ -1,0 +1,14 @@
+pdfplumber
+pymupdf
+pytesseract
+python-dateutil
+sentence-transformers
+faiss-cpu
+chromadb
+langchain
+langchain-community
+transformers
+torch
+rich
+tqdm
+numpy
