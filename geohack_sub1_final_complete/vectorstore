@@ -1,0 +1,11 @@
+from langchain_community.vectorstores import Chroma
+from pathlib import Path
+
+
+def build_index(chunks, embedder, index_dir: Path):
+    vdb = Chroma.from_documents(documents=chunks, embedding=embedder, persist_directory=str(index_dir))
+    vdb.persist()
+
+
+def load_index(index_dir: Path, embedder):
+    return Chroma(persist_directory=str(index_dir), embedding_function=embedder)
