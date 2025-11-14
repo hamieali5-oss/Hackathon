@@ -1,0 +1,37 @@
+from langchain_community.llms import HuggingFacePipeline
+from langchain_core.prompts import PromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
+
+GEN_MODEL = "google/flan-t5-base"
+
+def build_llm():
+    tok = AutoTokenizer.from_pretrained(GEN_MODEL)
+    mdl = AutoModelForSeq2SeqLM.from_pretrained(GEN_MODEL)
+    pipe = pipeline("text2text-generation", model=mdl, tokenizer=tok)
+    return HuggingFacePipeline(pipeline=pipe)
+
+
+def build_prompt():
+    return PromptTemplate.from_template("""
+You are an expert petroleum engineer.
+Write a clear, cohesive summary of at most {word_limit} words
+USING ONLY the provided context.
+
+Strong constraints:
+- NO hallucinations.
+- Preserve all numerical data (pressures, depths, dates, tubing, test rates).
+- Do not invent missing values.
+- If context is insufficient, answer: "Insufficient context".
+
+Context:
+{context}
+
+SUMMARY:
+""")
+
+
+def build_rag_chain():
+    prompt = build_prompt()
+    llm = build_llm()
+    return prompt | llm | StrOutputParser()
